@@ -2,6 +2,7 @@
 package es.jaranda.poc.junit5demo.service;
 
 import es.jaranda.poc.junit5demo.service.impl.DemoServiceImpl;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.ThrowingSupplier;
 
@@ -18,6 +19,7 @@ public class DemoServiceTest {
 
     private static final String EXPECTED_MESSAGE = "Hello JUnit 5!";
 
+    @DisplayName("should not exceeded delay timeout!'")
     @Test
     public void shouldNotExceededDelayTimeout() {
         // GIVEN:
@@ -31,6 +33,7 @@ public class DemoServiceTest {
         );
     }
 
+    @DisplayName("should say 'Hello JUnit 5!' when delay timeout is expired")
     @Test
     public void shouldSayHelloJUnit5WhenDelayTimeoutIsExpired()
            throws Throwable {

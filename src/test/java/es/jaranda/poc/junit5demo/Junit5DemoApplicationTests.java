@@ -2,6 +2,7 @@
 package es.jaranda.poc.junit5demo;
 
 import es.jaranda.poc.junit5demo.service.DemoService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,13 @@ public class Junit5DemoApplicationTests {
     @Autowired
     private DemoService demoService;
 
+    @DisplayName("should load Spring Application Context!'")
     @Test
     public void contextLoads() {
         // test spring boot context load
     }
 
+    @DisplayName("should say 'Hello JUnit 5!'")
     @Test
     public void shouldSayHelloJUnit5() {
         // WHEN
