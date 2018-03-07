@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.ThrowingSupplier;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +20,9 @@ public class DemoServiceTest {
             CONFIGURED_DELAY_IN_MILLIS + MARGIN_DELAY_IN_MILLIS;
 
     private static final String EXPECTED_MESSAGE = "Hello JUnit 5!";
+    private static final List<String> EXPECTED_FRUITS =
+            List.of("Apple", "Pear", "Banana", "Coconut", "Watermellon",
+                    "Strawberry");
 
     @DisplayName("should not exceeded delay timeout!'")
     @Test
@@ -44,6 +49,17 @@ public class DemoServiceTest {
                 demoService::delayedHelloWorld;
         // THEN:
         assertEquals(EXPECTED_MESSAGE, response.get());
+    }
+
+    @Test
+    public void shouldGiveMeFruits() {
+        // GIVEN:
+        final DemoService demoService = new DemoServiceImpl();
+        // WHEN:
+        final Iterable<String> fruits = demoService.giveMeFruits()
+                .collect(Collectors.toList());
+        // THEN:
+        assertIterableEquals(EXPECTED_FRUITS, fruits);
     }
 
 }
